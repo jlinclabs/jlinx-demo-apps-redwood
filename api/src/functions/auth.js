@@ -2,6 +2,7 @@ import { db } from 'src/lib/db'
 import { DbAuthHandler } from '@redwoodjs/api'
 
 export const handler = async (event, context) => {
+  console.log('AUTH EVENT', { event, context })
   const forgotPasswordOptions = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -26,9 +27,9 @@ export const handler = async (event, context) => {
       // for security reasons you may want to be vague here rather than expose
       // the fact that the email address wasn't found (prevents fishing for
       // valid email addresses)
-      usernameNotFound: 'Username not found',
+      emailNotFound: 'Email not found',
       // if the user somehow gets around client validation
-      usernameRequired: 'Username is required',
+      emalRequired: 'Email is required',
     },
   }
 
@@ -101,10 +102,10 @@ export const handler = async (event, context) => {
     //
     // If this returns anything else, it will be returned by the
     // `signUp()` function in the form of: `{ message: 'String here' }`.
-    handler: ({ username, hashedPassword, salt, userAttributes }) => {
+    handler: ({ email, hashedPassword, salt, userAttributes }) => {
       return db.user.create({
         data: {
-          email: username,
+          email: email,
           hashedPassword: hashedPassword,
           salt: salt,
           // name: userAttributes.name
@@ -115,7 +116,7 @@ export const handler = async (event, context) => {
     errors: {
       // `field` will be either "username" or "password"
       fieldMissing: '${field} is required',
-      usernameTaken: 'Username `${username}` already in use',
+      emailTaken: 'Email `${email}` already in use',
     },
   }
 
@@ -132,7 +133,7 @@ export const handler = async (event, context) => {
     // something like `id` or `userId` or even `email`)
     authFields: {
       id: 'id',
-      username: 'email',
+      email: 'email',
       hashedPassword: 'hashedPassword',
       salt: 'salt',
       resetToken: 'resetToken',
