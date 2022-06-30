@@ -7,10 +7,9 @@ import UsersLayout from 'src/layouts/UsersLayout'
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
+      <Route path="/" page={HomePage} name="home" />
       <Route path="/login" page={LoginPage} name="login" />
-      <Route path="/signup" page={SignupPage} name="signup" />
-      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+      <Route path="/logout" page={LogoutPage} name="logout" />
       <Set wrap={IdentitiesLayout}>
         <Route path="/identities/new" page={IdentityNewIdentityPage} name="newIdentity" />
         <Route path="/identities/{id:Int}/edit" page={IdentityEditIdentityPage} name="editIdentity" />

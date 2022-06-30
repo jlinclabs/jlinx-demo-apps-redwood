@@ -1,5 +1,6 @@
+import { Magic } from '@magic-sdk/admin'
 import { AuthenticationError } from '@redwoodjs/graphql-server'
-
+import db from 'src/lib/db'
 /**
  * getCurrentUser returns the user information from the decoded JWT
  *
@@ -16,17 +17,15 @@ import { AuthenticationError } from '@redwoodjs/graphql-server'
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
-export const getCurrentUser = async (
-  decoded,
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  { token, type },
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  { event, context }
-) => {
-  const { proof, claim } = decoded
-  // https://magic.link/docs/introduction/decentralized-id#what-is-a-did-token
-  return { proof, claim }
+ export const getCurrentUser = async (_decoded, { token }) => {
+  const mAdmin = new Magic(process.env.MAGICLINK_SECRET)
+  const { email, publicAddress, issuer } = await mAdmin.users.getMetadataByToken(token)
+  console.log('getCurrentUser', { email, publicAddress, issuer })
+  return await db.user.findUnique({ where: { issuer } })
 }
+
+
+
 
 /**
  * The user is authenticated if there is a currentUser in the context
