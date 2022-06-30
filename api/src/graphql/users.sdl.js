@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     name: String
     did: String
+    emails: [Email]!
     identities: [Identity]!
   }
 

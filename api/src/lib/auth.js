@@ -19,9 +19,19 @@ import { db } from 'src/lib/db'
  */
  export const getCurrentUser = async (_decoded, { token }) => {
   const mAdmin = new Magic(process.env.MAGICLINK_SECRET)
-  const { email, publicAddress, issuer } = await mAdmin.users.getMetadataByToken(token)
-  console.log('getCurrentUser', { email, publicAddress, issuer })
-  return await db.user.findUnique({ where: { did: issuer } })
+  const { email, publicAddress, issuer: did } = await mAdmin.users.getMetadataByToken(token)
+  console.log('getCurrentUser', { email, publicAddress, did })
+  let user = await db.user.findUnique({ where: { did } })
+  console.log('getCurrentUser found', { user })
+  if (user) return user
+  user = await db.user.create({
+    data: { did }
+  })
+  await db.email.create({
+    data: { email, userId: user.id }
+  })
+  console.log('getCurrentUser created', { user })
+  return user
 }
 
 

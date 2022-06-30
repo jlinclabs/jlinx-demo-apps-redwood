@@ -1,8 +1,15 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT,
-    "did" TEXT NOT NULL
+    "did" TEXT NOT NULL,
+    "name" TEXT
+);
+
+-- CreateTable
+CREATE TABLE "Email" (
+    "email" TEXT NOT NULL PRIMARY KEY,
+    "userId" INTEGER,
+    CONSTRAINT "Email_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
