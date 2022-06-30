@@ -1,6 +1,6 @@
 import { Magic } from '@magic-sdk/admin'
 import { AuthenticationError } from '@redwoodjs/graphql-server'
-import db from 'src/lib/db'
+import { db } from 'src/lib/db'
 /**
  * getCurrentUser returns the user information from the decoded JWT
  *
@@ -21,7 +21,7 @@ import db from 'src/lib/db'
   const mAdmin = new Magic(process.env.MAGICLINK_SECRET)
   const { email, publicAddress, issuer } = await mAdmin.users.getMetadataByToken(token)
   console.log('getCurrentUser', { email, publicAddress, issuer })
-  return await db.user.findUnique({ where: { issuer } })
+  return await db.user.findUnique({ where: { did: issuer } })
 }
 
 

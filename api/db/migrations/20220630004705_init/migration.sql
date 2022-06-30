@@ -2,17 +2,7 @@
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT,
-    "hashedPassword" TEXT NOT NULL,
-    "salt" TEXT NOT NULL,
-    "resetToken" TEXT,
-    "resetTokenExpiresAt" DATETIME
-);
-
--- CreateTable
-CREATE TABLE "Email" (
-    "email" TEXT NOT NULL,
-    "userId" INTEGER,
-    CONSTRAINT "Email_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "did" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -31,4 +21,4 @@ CREATE TABLE "Identity" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Email_email_key" ON "Email"("email");
+CREATE UNIQUE INDEX "User_did_key" ON "User"("did");

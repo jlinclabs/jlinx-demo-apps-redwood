@@ -1,11 +1,20 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const HomePage = () => {
   const { loading, isAuthenticated, getCurrentUser, userMetadata } = useAuth()
-  const currentUser = getCurrentUser()
+  const [currentUser, setCurrentUser] = useState()
+  useEffect(
+    () => {
+      getCurrentUser().then(
+        cu => { setCurrentUser(cu) },
+        error => { console.error(error) }
+      )
+    },
+    []
+  )
   console.log({
     loading,
     currentUser,
