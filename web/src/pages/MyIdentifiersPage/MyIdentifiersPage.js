@@ -12,7 +12,7 @@ const MyIdentifiersPage = () => {
       <MetaTags title="MyIdentifiers" description="MyIdentifiers page" />
       <Box sx={{ p: 2 }}>
 
-        {/* <Link to={} */}
+        <Link to={Link.to.newIdentifier()}>New Identifier</Link>
       </Box>
     </>
   )

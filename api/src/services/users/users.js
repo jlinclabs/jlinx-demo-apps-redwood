@@ -30,6 +30,5 @@ export const deleteUser = ({ id }) => {
 }
 
 export const User = {
-  identities: (_obj, { root }) =>
-    db.user.findUnique({ where: { id: root.id } }).identities(),
+
 }

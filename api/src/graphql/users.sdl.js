@@ -4,7 +4,6 @@ export const schema = gql`
     name: String
     did: String
     emails: [Email]!
-    identities: [Identity]!
   }
 
   type Query {
