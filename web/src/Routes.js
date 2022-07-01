@@ -23,6 +23,7 @@ const Routes = () => {
       <Set wrap={[DefaultLayout, MyLayout]} unauthenticated="home">
         <Route path="/my" page={MyPage} name="my" />
         <Route path="/my/identifiers" page={MyIdentifiersPage} name="myIdentifiers" />
+        <Route path="/my/identifiers/:did" page={MyIdentifierPage} name="myIdentifiers" />
         <Route path="/my/identifiers/new" page={NewIdentifierPage} name="newIdentifier" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
       </Set>

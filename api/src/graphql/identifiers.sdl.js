@@ -11,21 +11,8 @@ export const schema = gql`
     identifier(id: String!): Identifier @requireAuth
   }
 
-  input CreateIdentifierInput {
-    secretKey: String!
-    userId: Int!
-  }
-
-  input UpdateIdentifierInput {
-    did: String
-    secretKey: String
-    userId: Int
-  }
-
   type Mutation {
-    createIdentifier(input: CreateIdentifierInput!): Identifier! @requireAuth
-    updateIdentifier(id: String!, input: UpdateIdentifierInput!): Identifier!
-      @requireAuth
+    createIdentifier: Identifier! @requireAuth
     deleteIdentifier(id: String!): Identifier! @requireAuth
   }
 `

@@ -5,8 +5,8 @@ import Button from '@mui/material/Button'
 import IdentifierForm from 'src/components/Identifier/IdentifierForm'
 
 const CREATE_IDENTIFIER_MUTATION = gql`
-  mutation CreateIdentifierMutation($input: CreateIdentifierInput!) {
-    createIdentifier(input: $input) {
+  mutation CreateIdentifierMutation {
+    createIdentifier {
       did
     }
   }
@@ -20,9 +20,10 @@ const NewIdentifierButton = ({
   const [createIdentifier, { loading, error }] = useMutation(
     CREATE_IDENTIFIER_MUTATION,
     {
-      onCompleted: () => {
+      onCompleted: ({ createIdentifier }) => {
+        const { did } = createIdentifier
         toast.success('Identifier created')
-        navigate(routes.identifiers())
+        navigate(routes.myIdentifiers({ did }))
       },
       onError: (error) => {
         toast.error(error.message)

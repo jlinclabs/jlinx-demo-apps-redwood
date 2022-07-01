@@ -5,8 +5,8 @@ import { toast } from '@redwoodjs/web/toast'
 import IdentifierForm from 'src/components/Identifier/IdentifierForm'
 
 const CREATE_IDENTIFIER_MUTATION = gql`
-  mutation CreateIdentifierMutation($input: CreateIdentifierInput!) {
-    createIdentifier(input: $input) {
+  mutation CreateIdentifierMutation() {
+    createIdentifier() {
       did
     }
   }
