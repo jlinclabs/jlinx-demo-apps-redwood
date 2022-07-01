@@ -1,33 +1,52 @@
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { useEffect, useRef } from 'react'
-import {
-  Form,
-  Label,
-  TextField,
-  PasswordField,
-  Submit,
-  FieldError,
-} from '@redwoodjs/forms'
+// import {
+//   Form,
+//   Label,
+//   TextField,
+//   PasswordField,
+//   Submit,
+//   FieldError,
+// } from '@redwoodjs/forms'
+import * as forms from '@redwoodjs/forms'
+console.log({ forms})
 import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+import Paper from '@mui/material/Paper'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Link from 'src/components/Link'
 
 const LoginPage = () => {
-  const { isAuthenticated, logIn } = useAuth()
+  const auth = useAuth()
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate(routes.home())
+    if (auth.isAuthenticated) {
+      navigate(routes.my())
     }
-  }, [isAuthenticated])
+  }, [auth.isAuthenticated])
 
   const emailRef = useRef()
   useEffect(() => {
-    emailRef.current.focus()
-  }, [])
+    if (!auth.loading) {
+      console.log('FOCUS', emailRef.current)
+      emailRef.current.focus()
+    }
+  }, [auth.loading])
 
   const onSubmit = async (data) => {
-    const response = await logIn({ ...data })
+    console.log('onSbmit', data)
+    const response = await auth.logIn({ ...data })
 
     if (response.message) {
       toast(response.message)
@@ -42,49 +61,63 @@ const LoginPage = () => {
     <>
       <MetaTags title="Login" />
 
-      <main className="rw-main">
+      <Container maxWidth="xs">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Login</h2>
-            </header>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Welcome
+          </Typography>
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <Label
-                    name="email"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    email
-                  </Label>
-                  <TextField
-                    name="email"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={emailRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'email is required',
-                      },
-                    }}
-                  />
-
-                  <FieldError name="email" className="rw-field-error" />
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
-                  </div>
-                </Form>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </main>
+          <Box {...{
+            component: forms.Form,
+            onSubmit,
+            noValidate: true,
+            sx: { mt: 1 },
+            disabled: auth.loading,
+          }}>
+            <TextField
+              disabled={auth.loading}
+              InputProps={{
+                inputComponent: forms.TextField,
+                validation: {
+                  required: {
+                    value: true,
+                    message: 'email is required',
+                  },
+                },
+              }}
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              inputRef={emailRef}
+            />
+            <Button
+              disabled={auth.loading}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {`Sign in / Sign up`}
+            </Button>
+          </Box>
+        </Box>
+      </Container>
     </>
   )
 }

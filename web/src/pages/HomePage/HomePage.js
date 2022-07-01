@@ -1,8 +1,11 @@
-import { Link, routes } from '@redwoodjs/router'
+import { routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+
 import InspectObject from 'src/components/InspectObject'
+import Link from 'src/components/Link'
 
 const HomePage = () => {
   const { loading, isAuthenticated, getCurrentUser, userMetadata } = useAuth()
@@ -24,10 +27,18 @@ const HomePage = () => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-      <InspectObject object={currentUser}/>
       {isAuthenticated
-        ? <Link to={routes.logout()}>Logout</Link>
-        : <Link to={routes.login()}>Login</Link>
+        ? <Box>
+          <h2>Logged In</h2>
+          <InspectObject object={currentUser}/>
+          <Link to={routes.logout()}>Logout</Link>
+        </Box>
+        : loading
+          ? <Box>loading…</Box>
+          : <Box>
+            <h2>Not Logged In</h2>
+            <Link to={routes.login()}>Login</Link>
+          </Box>
       }
     </>
   )

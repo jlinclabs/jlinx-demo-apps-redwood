@@ -18,7 +18,10 @@ import { db } from 'src/lib/db'
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
  export const getCurrentUser = async (_decoded, { token }) => {
-  const mAdmin = new Magic(process.env.MAGICLINK_SECRET)
+  const mAdmin = new Magic(process.env.MAGICLINK_SECRET, {
+    // testMode: true,
+    testMode: false,
+  })
   const { email, publicAddress, issuer: did } = await mAdmin.users.getMetadataByToken(token)
   console.log('getCurrentUser', { email, publicAddress, did })
   let user = await db.user.findUnique({ where: { did } })
@@ -33,7 +36,6 @@ import { db } from 'src/lib/db'
   console.log('getCurrentUser created', { user })
   return user
 }
-
 
 
 
