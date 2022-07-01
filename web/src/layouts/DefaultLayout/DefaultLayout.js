@@ -51,7 +51,7 @@ function MainNav(props){
       backgroundColor: '#171717',
     },
   }}>
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Toolbar disableGutters>
         <AppLogo sx={{ mr: 1 }} />
         <Typography

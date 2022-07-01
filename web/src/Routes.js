@@ -9,6 +9,7 @@ import MyLayout from 'src/layouts/MyLayout'
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
+
       <Set wrap={DefaultLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/login" page={LoginPage} name="login" />
@@ -16,6 +17,8 @@ const Routes = () => {
       </Set>
       <Set wrap={[DefaultLayout, MyLayout]} unauthenticated="home">
         <Route path="/my" page={MyPage} name="my" />
+        <Route path="/my/identifiers" page={MyIdentifiersPage} name="myIdentifiers" />
+        <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
         {/* <Route path="/my/accounts" page={MyAccountsPage} name="myAccounts" /> */}
       </Set>
       {/* <Set wrap={IdentitiesLayout}>

@@ -1,6 +1,7 @@
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
 
+import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
@@ -15,6 +16,9 @@ import PeopleIcon from '@mui/icons-material/People'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import LayersIcon from '@mui/icons-material/Layers'
 import AssignmentIcon from '@mui/icons-material/Assignment'
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 
 import Link from 'src/components/Link'
 
@@ -27,7 +31,7 @@ const MyLayout = ({ children }) => {
   }
 
   return <>
-    <Box sx={{
+    <Container maxWidth="xl" sx={{
       display: 'flex',
       flexDirection: 'row',
       flex: '1 1',
@@ -41,19 +45,19 @@ const MyLayout = ({ children }) => {
         }}>
           <ListItemButton
             component={Link}
-            to={Link.to.my()}
+            to={Link.to.myIdentifiers()}
           >
             <ListItemIcon>
-              <PeopleIcon />
+              <AccountBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Indentifiers" />
           </ListItemButton>
           <ListItemButton
             component={Link}
-            to={Link.to.my()}
+            to={Link.to.myContracts()}
           >
             <ListItemIcon>
-              <PeopleIcon />
+              <ArticleOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Contracts" />
           </ListItemButton>
@@ -61,7 +65,7 @@ const MyLayout = ({ children }) => {
           <Divider sx={{ my: 1 }} />
           <ListItemButton onClick={onLogOut}>
             <ListItemIcon>
-              <AssignmentIcon />
+              <LogoutOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="logout" />
           </ListItemButton>
@@ -72,7 +76,7 @@ const MyLayout = ({ children }) => {
       }}>
         {children}
       </Box>
-    </Box>
+    </Container>
   </>
 }
 
