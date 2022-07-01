@@ -1,22 +1,21 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import Container from '@mui/material/Container'
+import NewIdentifierButton from 'src/components/Identifier/NewIdentifierButton'
 
 const NewIdentifierPage = () => {
   return (
     <>
       <MetaTags title="NewIdentifier" description="NewIdentifier page" />
-
-      <h1>NewIdentifierPage</h1>
-      <p>
-        Find me in{' '}
-        <code>./web/src/pages/NewIdentifierPage/NewIdentifierPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>newIdentifier</code>, link to me with `
-        <Link to={routes.newIdentifier()}>NewIdentifier</Link>`
-      </p>
+      <Container maxWidth="xs" sx={{
+        p: 4,
+        textAlign: 'center',
+      }}>
+        <NewIdentifierButton variant="contained" />
+      </Container>
     </>
   )
 }
 
 export default NewIdentifierPage
+

@@ -12,8 +12,6 @@ export const schema = gql`
   }
 
   input CreateIdentifierInput {
-    did: String!
-    secretKey: String!
     userId: Int!
   }
 
