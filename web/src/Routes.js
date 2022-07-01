@@ -1,6 +1,7 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import IdentifiersLayout from 'src/layouts/IdentifiersLayout'
 import DefaultLayout from 'src/layouts/DefaultLayout'
 import MyLayout from 'src/layouts/MyLayout'
 // import IdentitiesLayout from 'src/layouts/IdentitiesLayout'
@@ -9,6 +10,13 @@ import MyLayout from 'src/layouts/MyLayout'
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
+
+      <Set wrap={IdentifiersLayout}>
+        <Route path="/identifiers/new" page={IdentifierNewIdentifierPage} name="newIdentifier" />
+        <Route path="/identifiers/{id}/edit" page={IdentifierEditIdentifierPage} name="editIdentifier" />
+        <Route path="/identifiers/{id}" page={IdentifierIdentifierPage} name="identifier" />
+        <Route path="/identifiers" page={IdentifierIdentifiersPage} name="identifiers" />
+      </Set>
 
       <Set wrap={DefaultLayout}>
         <Route path="/" page={HomePage} name="home" />
@@ -19,20 +27,7 @@ const Routes = () => {
         <Route path="/my" page={MyPage} name="my" />
         <Route path="/my/identifiers" page={MyIdentifiersPage} name="myIdentifiers" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
-        {/* <Route path="/my/accounts" page={MyAccountsPage} name="myAccounts" /> */}
       </Set>
-      {/* <Set wrap={IdentitiesLayout}>
-        <Route path="/identities/new" page={IdentityNewIdentityPage} name="newIdentity" />
-        <Route path="/identities/{id:Int}/edit" page={IdentityEditIdentityPage} name="editIdentity" />
-        <Route path="/identities/{id:Int}" page={IdentityIdentityPage} name="identity" />
-        <Route path="/identities" page={IdentityIdentitiesPage} name="identities" />
-      </Set>
-      <Set wrap={UsersLayout}>
-        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
-        <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-        <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-        <Route path="/users" page={UserUsersPage} name="users" />
-      </Set> */}
       <Route notfound page={NotFoundPage} />
     </Router>
   )
