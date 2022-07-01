@@ -73,6 +73,7 @@ const MyLayout = ({ children }) => {
       </Box>
       <Box sx={{
         flex: '1 1',
+        position: 'relative',
       }}>
         {children}
       </Box>
