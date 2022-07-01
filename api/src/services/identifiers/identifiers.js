@@ -1,4 +1,6 @@
 import { db } from 'src/lib/db'
+import { context } from '@redwoodjs/graphql-server'
+import { createSigningKeyPair } from 'jlinx-util'
 
 export const identifiers = () => {
   return db.identifier.findMany()
@@ -11,8 +13,16 @@ export const identifier = ({ id }) => {
 }
 
 export const createIdentifier = ({ input }) => {
+  console.log('CREATE IDENTIFYER', {input, context})
+
+  const did =
+  const secretKey
+
   return db.identifier.create({
-    data: input,
+    data: {
+      did,
+      userId: context.currentUser.id
+    },
   })
 }
 

@@ -4,7 +4,7 @@ export const standard = defineScenario({
       data: {
         did: 'String',
         secretKey: 'String',
-        user: { create: { did: 'String859649' } },
+        user: { create: { did: 'String2411240' } },
       },
     },
 
@@ -12,7 +12,7 @@ export const standard = defineScenario({
       data: {
         did: 'String',
         secretKey: 'String',
-        user: { create: { did: 'String2171063' } },
+        user: { create: { did: 'String836047' } },
       },
     },
   },
