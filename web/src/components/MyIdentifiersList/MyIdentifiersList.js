@@ -1,30 +1,30 @@
 import { useQuery } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Alert from '@mui/material/Alert'
 import Skeleton from '@mui/material/Skeleton'
 import Link from 'src/components/Link'
 import Timestamp from 'src/components/Timestamp'
 import InspectObject from 'src/components/InspectObject'
 
 export const QUERY = gql`
-  query MyIdentifiers {
+  query MyIdentifiersList {
     identifiers {
       did
+      createdAt
     }
   }
 `
 
 const MyIdentifiersList = () => {
-
   const { loading, error, data } = useQuery(QUERY, {
     variables: {}
   })
-
-  console.log({ loading, error, data })
 
   const identifiers = data?.identifiers
 
@@ -34,8 +34,9 @@ const MyIdentifiersList = () => {
       // bgcolor: 'background.paper',
       // flexGrow: 1,
     }}>
+      {error && <Alert severity="error">{error.message}</Alert>}
       {(loading || !identifiers)
-        ? Array(10).fill().map((_, i) =>
+        ? Array(3).fill().map((_, i) =>
           <Skeleton key={i} animation="wave" height="100px" />
         )
         : identifiers.map(identifier =>

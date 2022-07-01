@@ -1,7 +1,7 @@
 export const schema = gql`
   type Identifier {
     did: String!
-    secretKey: String!
+    createdAt: DateTime!
     user: User!
     userId: Int!
   }

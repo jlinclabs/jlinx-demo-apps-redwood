@@ -5,6 +5,7 @@ import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 import Link from 'src/components/Link'
 import MyIdentifiersList from 'src/components/MyIdentifiersList'
+import NewIdentifierButton from 'src/components/Identifier/NewIdentifierButton'
 
 const MyIdentifiersPage = () => {
 
@@ -12,7 +13,7 @@ const MyIdentifiersPage = () => {
     <>
       <MetaTags title="MyIdentifiers" description="MyIdentifiers page" />
       <Box sx={{ p: 2 }}>
-
+        <NewIdentifierButton variant="contained" />
         <MyIdentifiersList />
       </Box>
     </>
