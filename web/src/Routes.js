@@ -9,12 +9,12 @@ import MyLayout from 'src/layouts/MyLayout'
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
-      <Set wrap={IdentifiersLayout}>
+      {/* <Set wrap={IdentifiersLayout}>
         <Route path="/identifiers/new" page={IdentifierNewIdentifierPage} name="newIdentifier" />
-        <Route path="/identifiers/{id}/edit" page={IdentifierEditIdentifierPage} name="editIdentifier" />
-        <Route path="/identifiers/{id}" page={IdentifierIdentifierPage} name="identifier" />
+        <Route path="/identifiers/{did}/edit" page={IdentifierEditIdentifierPage} name="editIdentifier" />
+        <Route path="/identifiers/{did}" page={IdentifierIdentifierPage} name="identifier" />
         <Route path="/identifiers" page={IdentifierIdentifiersPage} name="identifiers" />
-      </Set>
+      </Set> */}
       <Set wrap={DefaultLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/login" page={LoginPage} name="login" />
@@ -23,8 +23,8 @@ const Routes = () => {
       <Set wrap={[DefaultLayout, MyLayout]} unauthenticated="home">
         <Route path="/my" page={MyPage} name="my" />
         <Route path="/my/identifiers" page={MyIdentifiersPage} name="myIdentifiers" />
-        <Route path="/my/identifiers/:did" page={MyIdentifierPage} name="myIdentifiers" />
         <Route path="/my/identifiers/new" page={NewIdentifierPage} name="newIdentifier" />
+        <Route path="/my/identifiers/{did}" page={MyIdentifierPage} name="myIdentifier" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
       </Set>
       <Route notfound page={NotFoundPage} />

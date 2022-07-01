@@ -22,8 +22,8 @@ const NewIdentifierButton = ({
     {
       onCompleted: ({ createIdentifier }) => {
         const { did } = createIdentifier
-        toast.success('Identifier created')
-        navigate(routes.myIdentifiers({ did }))
+        toast.success(`Identifier created DID=${did}`)
+        navigate(routes.myIdentifier({ did }))
       },
       onError: (error) => {
         toast.error(error.message)

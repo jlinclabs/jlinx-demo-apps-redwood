@@ -1,4 +1,4 @@
-import { Link, routes } from '@redwoodjs/router'
+import Link from 'src/components/Link'
 
 import Identifiers from 'src/components/Identifier/Identifiers'
 
@@ -6,8 +6,6 @@ export const QUERY = gql`
   query FindIdentifiers {
     identifiers {
       did
-      secretKey
-      userId
     }
   }
 `
@@ -16,9 +14,9 @@ export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => {
   return (
-    <div className="rw-text-center">
+    <div>
       {'No identifiers yet. '}
-      <Link to={routes.newIdentifier()} className="rw-link">
+      <Link to={Link.to.newIdentifier()}>
         {'Create one?'}
       </Link>
     </div>
