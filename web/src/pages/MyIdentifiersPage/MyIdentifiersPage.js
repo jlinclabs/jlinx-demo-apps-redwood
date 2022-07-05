@@ -5,7 +5,7 @@ import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 import Link from 'src/components/Link'
 import MyIdentifiersList from 'src/components/MyIdentifiersList'
-import NewIdentifierButton from 'src/components/Identifier/NewIdentifierButton'
+import NewIdentifierButton from 'src/components/NewIdentifierButton'
 
 const MyIdentifiersPage = () => {
 

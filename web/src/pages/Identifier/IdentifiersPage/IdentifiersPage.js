@@ -1,7 +1,8 @@
-import IdentifiersCell from 'src/components/Identifier/IdentifiersCell'
+import Link from 'src/components/Link'
+import MyIdentifiersList from 'src/components/MyIdentifiersList'
 
 const IdentifiersPage = () => {
-  return <IdentifiersCell />
+  return <MyIdentifiersList />
 }
 
 export default IdentifiersPage

@@ -1,7 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import Container from '@mui/material/Container'
-import NewIdentifierButton from 'src/components/Identifier/NewIdentifierButton'
+import NewIdentifierButton from 'src/components/NewIdentifierButton'
 
 const NewIdentifierPage = () => {
   return (

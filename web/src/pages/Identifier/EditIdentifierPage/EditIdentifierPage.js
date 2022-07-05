@@ -1,7 +1,7 @@
-import EditIdentifierCell from 'src/components/Identifier/EditIdentifierCell'
+// import EditIdentifierCell from 'src/components/Identifier/EditIdentifierCell'
 
 const EditIdentifierPage = ({ id }) => {
-  return <EditIdentifierCell id={id} />
+  return <div/> // <EditIdentifierCell id={id} />
 }
 
 export default EditIdentifierPage

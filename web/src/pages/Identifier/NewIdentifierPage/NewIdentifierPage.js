@@ -1,7 +1,7 @@
-import NewIdentifier from 'src/components/Identifier/NewIdentifier'
+// import NewIdentifier from 'src/components/Identifier/NewIdentifier'
 
 const NewIdentifierPage = () => {
-  return <NewIdentifier />
+  return <div/> // <NewIdentifier />
 }
 
 export default NewIdentifierPage
