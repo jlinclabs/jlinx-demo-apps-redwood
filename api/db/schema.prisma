@@ -45,7 +45,7 @@ model Profile {
 
 model Contract {
   id     String @id
+  value  String
   user   User   @relation(fields: [userId], references: [id])
   userId Int
-  value  String
 }

@@ -1,20 +1,16 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import Box from '@mui/material/Box'
+import MyContractsList from 'src/components/MyContractsList'
+import NewContractButton from 'src/components/NewContractButton'
 
 const MyContractsPage = () => {
   return (
     <>
       <MetaTags title="MyContracts" description="MyContracts page" />
-
-      <h1>MyContractsPage</h1>
-      <p>
-        Find me in{' '}
-        <code>./web/src/pages/MyContractsPage/MyContractsPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>myContracts</code>, link to me with `
-        <Link to={routes.myContracts()}>MyContracts</Link>`
-      </p>
+      <Box sx={{ p: 2 }}>
+        <NewContractButton variant="contained" />
+        <MyContractsList />
+      </Box>
     </>
   )
 }

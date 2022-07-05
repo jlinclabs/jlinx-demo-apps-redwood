@@ -33,5 +33,13 @@ CREATE TABLE "Profile" (
     CONSTRAINT "Profile_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- CreateTable
+CREATE TABLE "Contract" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "value" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "Contract_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_did_key" ON "User"("did");

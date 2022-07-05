@@ -7802,6 +7802,7 @@ __metadata:
     "@magic-sdk/admin": ^1.4.1
     "@redwoodjs/api": 2.0.0
     "@redwoodjs/graphql-server": 2.0.0
+    jlinx-client: "git@github.com:jlinclabs/jlinx-client.git#commit=a6f0a45044e2375b1a32bfe3bc80d807caee6f65"
   languageName: unknown
   linkType: soft
 
@@ -8258,7 +8259,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"b4a@npm:^1.0.1, b4a@npm:^1.1.0, b4a@npm:^1.3.0":
+"b4a@npm:^1.0.1, b4a@npm:^1.1.0, b4a@npm:^1.3.0, b4a@npm:^1.5.3":
   version: 1.5.3
   resolution: "b4a@npm:1.5.3"
   checksum: c75b49abac65bd711fe3eeb46bddbeea32a51e95ba42bf6c035e0d4565bd48744078f65037f645b4c6099b244524c2e8839eade4e3844fd043a00262f64184e3
@@ -10959,6 +10960,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"data-uri-to-buffer@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "data-uri-to-buffer@npm:4.0.0"
+  checksum: 940461017d78a15a01c9a3f7ba964c634c7b4d6db5cbb2547dc3c743395abe3e6ba582f05b3c259b150bf3715558641255f89afb704d94859a8505871d07618f
+  languageName: node
+  linkType: hard
+
 "data-urls@npm:^2.0.0":
   version: 2.0.0
   resolution: "data-urls@npm:2.0.0"
@@ -13396,6 +13404,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fetch-blob@npm:^3.1.2, fetch-blob@npm:^3.1.4":
+  version: 3.1.5
+  resolution: "fetch-blob@npm:3.1.5"
+  dependencies:
+    node-domexception: ^1.0.0
+    web-streams-polyfill: ^3.0.3
+  checksum: fb98d84498ed24d87def56c0151159ffa8131b37db24dddbbbb1a2a679b9198a03d2d43003f3a9c156a301dd882a7b4943dccc9c899d58e3dd5747d002099623
+  languageName: node
+  linkType: hard
+
 "fetch-retry@npm:^5.0.2":
   version: 5.0.2
   resolution: "fetch-retry@npm:5.0.2"
@@ -13781,6 +13799,15 @@ __metadata:
     node-domexception: 1.0.0
     web-streams-polyfill: 4.0.0-beta.1
   checksum: 8fd70c642003b40ee23a77cc312a89c39ef27ccbf0d7fad57f157aeeab944c1fabd3402f7958de2c8694d1dbd1b273aefd8423eeaddc2ab442a45ba1d78f7f48
+  languageName: node
+  linkType: hard
+
+"formdata-polyfill@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "formdata-polyfill@npm:4.0.10"
+  dependencies:
+    fetch-blob: ^3.1.2
+  checksum: 5392ec484f9ce0d5e0d52fb5a78e7486637d516179b0eb84d81389d7eccf9ca2f663079da56f761355c0a65792810e3b345dc24db9a8bbbcf24ef3c8c88570c6
   languageName: node
   linkType: hard
 
@@ -16845,9 +16872,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jlinx-util@git@github.com:jlinclabs/jlinx-util.git#279f90fdb3b9237522b7d57d22f9c34ae644bcea":
+"jlinx-client@git@github.com:jlinclabs/jlinx-client.git#commit=a6f0a45044e2375b1a32bfe3bc80d807caee6f65":
   version: 1.0.0
-  resolution: "jlinx-util@git@github.com:jlinclabs/jlinx-util.git#commit=279f90fdb3b9237522b7d57d22f9c34ae644bcea"
+  resolution: "jlinx-client@git@github.com:jlinclabs/jlinx-client.git#commit=a6f0a45044e2375b1a32bfe3bc80d807caee6f65"
+  dependencies:
+    b4a: ^1.5.3
+    debug: ^4.3.4
+    jlinx-util: "github:jlinclabs/jlinx-util#279f90fdb3b9237522b7d57d22f9c34ae644bcea"
+    jlinx-vault: "github:jlinclabs/jlinx-vault#29776247b9fcedda03678a951e5f7b0dab96d014"
+    lodash.isplainobject: ^4.0.6
+    node-fetch: ^3.2.4
+  checksum: ec0856a3ce21f61ff95c04267e2831024d5d300bfa0a81e894785427c21d6c8ab7451dabd0bc1eddecbadcad1b92222b62797109d358b56f0366fb89c2278cf9
+  languageName: node
+  linkType: hard
+
+"jlinx-util@github:jlinclabs/jlinx-util#279f90fdb3b9237522b7d57d22f9c34ae644bcea":
+  version: 1.0.0
+  resolution: "jlinx-util@https://github.com/jlinclabs/jlinx-util.git#commit=279f90fdb3b9237522b7d57d22f9c34ae644bcea"
   dependencies:
     b4a: ^1.3.0
     base-x: ^4.0.0
@@ -16857,6 +16898,19 @@ __metadata:
     sodium-universal: ^3.0.4
     urlsafe-base64: ^1.0.0
   checksum: 260936bd16b810b95b1ec7b9611941e6ad52b8c0d2bbac09bfaf3372b36bfb6006a42f2aec77a7373f7989a054f0b28a22a29d9fc91642bf85b880483560b28c
+  languageName: node
+  linkType: hard
+
+"jlinx-vault@github:jlinclabs/jlinx-vault#29776247b9fcedda03678a951e5f7b0dab96d014":
+  version: 1.0.0
+  resolution: "jlinx-vault@https://github.com/jlinclabs/jlinx-vault.git#commit=29776247b9fcedda03678a951e5f7b0dab96d014"
+  dependencies:
+    b4a: ^1.5.3
+    compact-encoding: ^2.5.1
+    mkdirp-classic: ^0.5.3
+    safety-catch: ^1.0.2
+    sodium-universal: ^3.0.4
+  checksum: f570c926928c3acdf66c706368538fa00d3cbd11ff8d6482d7bba6e3f7a252dc3062bab05d66cd7a9c6f96e9386c52dbc1710e6ce3c0f095da4ec5e2cbd005cb
   languageName: node
   linkType: hard
 
@@ -18483,6 +18537,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mkdirp-classic@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "mkdirp-classic@npm:0.5.3"
+  checksum: 95371d831d196960ddc3833cc6907e6b8f67ac5501a6582f47dfae5eb0f092e9f8ce88e0d83afcae95d6e2b61a01741ba03714eeafb6f7a6e9dcc158ac85b168
+  languageName: node
+  linkType: hard
+
 "mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.3":
   version: 0.5.6
   resolution: "mkdirp@npm:0.5.6"
@@ -18746,7 +18807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-domexception@npm:1.0.0":
+"node-domexception@npm:1.0.0, node-domexception@npm:^1.0.0":
   version: 1.0.0
   resolution: "node-domexception@npm:1.0.0"
   checksum: 5e5d63cda29856402df9472335af4bb13875e1927ad3be861dc5ebde38917aecbf9ae337923777af52a48c426b70148815e890a5d72760f1b4d758cc671b1a2b
@@ -18774,6 +18835,17 @@ __metadata:
     encoding:
       optional: true
   checksum: fcae80f5ac52fbf5012f5e19df2bd3915e67d3b3ad51cb5942943df2238d32ba15890fecabd0e166876a9f98a581ab50f3f10eb942b09405c49ef8da36b826c7
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^3.2.4":
+  version: 3.2.6
+  resolution: "node-fetch@npm:3.2.6"
+  dependencies:
+    data-uri-to-buffer: ^4.0.0
+    fetch-blob: ^3.1.4
+    formdata-polyfill: ^4.0.10
+  checksum: 59fc703e5bec35c0fa553199009956f674adfed50f0cc89f091448e968cf617594fe7c9898911da7fa4c62d4033bab36b0ab8cccd875bc828e12a408e6a8f23a
   languageName: node
   linkType: hard
 
@@ -22105,7 +22177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safety-catch@npm:^1.0.1":
+"safety-catch@npm:^1.0.1, safety-catch@npm:^1.0.2":
   version: 1.0.2
   resolution: "safety-catch@npm:1.0.2"
   checksum: 3e80b500a069bb3333b15803d55a7f857252bd929e4d421f3a6e785e5215a499d167bd66cf40631575c2b5e5784e37201991e2e0f8c7cecd84425fae70675824
@@ -25213,7 +25285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-streams-polyfill@npm:^3.2.0":
+"web-streams-polyfill@npm:^3.0.3, web-streams-polyfill@npm:^3.2.0":
   version: 3.2.1
   resolution: "web-streams-polyfill@npm:3.2.1"
   checksum: 70ed6b5708e14afa2ab699221ea197d7c68ec0c8274bbe0181aecc5ba636ca27cbd383d2049f0eb9d529e738f5c088825502b317f3df24d18a278e4cc9a10e8b
@@ -25360,7 +25432,6 @@ __metadata:
     "@redwoodjs/forms": 2.0.0
     "@redwoodjs/router": 2.0.0
     "@redwoodjs/web": 2.0.0
-    jlinx-util: "git@github.com:jlinclabs/jlinx-util.git#279f90fdb3b9237522b7d57d22f9c34ae644bcea"
     magic-sdk: ^8.1.1
     prop-types: 15.8.1
     react: 17.0.2

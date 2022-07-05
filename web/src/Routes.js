@@ -1,20 +1,13 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import IdentifiersLayout from 'src/layouts/IdentifiersLayout'
 import DefaultLayout from 'src/layouts/DefaultLayout'
 import MyLayout from 'src/layouts/MyLayout'
-// import UsersLayout from 'src/layouts/UsersLayout'
 
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
-      {/* <Set wrap={IdentifiersLayout}>
-        <Route path="/identifiers/new" page={IdentifierNewIdentifierPage} name="newIdentifier" />
-        <Route path="/identifiers/{did}/edit" page={IdentifierEditIdentifierPage} name="editIdentifier" />
-        <Route path="/identifiers/{did}" page={IdentifierIdentifierPage} name="identifier" />
-        <Route path="/identifiers" page={IdentifierIdentifiersPage} name="identifiers" />
-      </Set> */}
+      <Route path="/my-contract" page={MyContractPage} name="myContract" />
       <Set wrap={DefaultLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/login" page={LoginPage} name="login" />
@@ -26,6 +19,8 @@ const Routes = () => {
         <Route path="/my/identifiers/new" page={NewIdentifierPage} name="newIdentifier" />
         <Route path="/my/identifiers/{did}" page={MyIdentifierPage} name="myIdentifier" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
+        <Route path="/my/contracts/new" page={NewContractPage} name="newContract" />
+        <Route path="/my/contracts/{id}" page={MyContractPage} name="myContract" />
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

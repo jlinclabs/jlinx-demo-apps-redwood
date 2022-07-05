@@ -4,6 +4,7 @@
 .netlify
 .redwood
 dev.db*
+jlinx.vault*
 dist
 dist-babel
 node_modules
