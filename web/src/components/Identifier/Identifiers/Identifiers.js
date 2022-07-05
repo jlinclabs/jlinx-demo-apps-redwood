@@ -7,7 +7,7 @@ import { QUERY } from 'src/components/Identifier/IdentifiersCell'
 import Link from 'src/components/Link'
 
 const DELETE_IDENTIFIER_MUTATION = gql`
-  mutation DeleteIdentifierMutation($id: String!) {
+  mutation DeleteIdentifierMutation($did: String!) {
     deleteIdentifier(did: $did) {
       did
     }

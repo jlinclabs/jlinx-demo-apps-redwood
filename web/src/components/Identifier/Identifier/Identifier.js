@@ -5,9 +5,9 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 const DELETE_IDENTIFIER_MUTATION = gql`
-  mutation DeleteIdentifierMutation99($id: String!) {
-    deleteIdentifier(id: $id) {
-      id
+  mutation DeleteIdentifierMutation99($did: String!) {
+    deleteIdentifier(did: $did) {
+      did
     }
   }
 `

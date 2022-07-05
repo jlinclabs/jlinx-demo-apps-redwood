@@ -9,9 +9,9 @@ export const identifiers = () => {
   return db.identifier.findMany()
 }
 
-export const identifier = ({ id }) => {
+export const identifier = ({ did }) => {
   return db.identifier.findUnique({
-    where: { id },
+    where: { did },
   })
 }
 

@@ -8,11 +8,11 @@ export const schema = gql`
 
   type Query {
     identifiers: [Identifier!]! @requireAuth
-    identifier(id: String!): Identifier @requireAuth
+    identifier(did: String!): Identifier @requireAuth
   }
 
   type Mutation {
     createIdentifier: Identifier! @requireAuth
-    deleteIdentifier(id: String!): Identifier! @requireAuth
+    deleteIdentifier(did: String!): Identifier! @requireAuth
   }
 `
