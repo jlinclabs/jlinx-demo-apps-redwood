@@ -38,8 +38,7 @@ const NewContractForm = () => {
   const [createContract, { loading, error }] = useService(
     'contracts.createContract',
     {
-      onCompleted: ({ contract }) => {
-        const { id } = contract
+      onCompleted: ({ id }) => {
         toast.success(`Contract created DID=${id}`)
         navigate(routes.myContract({ id }))
       },

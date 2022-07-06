@@ -7803,6 +7803,7 @@ __metadata:
     "@redwoodjs/api": 2.0.0
     "@redwoodjs/graphql-server": 2.0.0
     jlinx-client: "git@github.com:jlinclabs/jlinx-client.git#commit=a6f0a45044e2375b1a32bfe3bc80d807caee6f65"
+    jlinx-util: "github:jlinclabs/jlinx-util#279f90fdb3b9237522b7d57d22f9c34ae644bcea"
   languageName: unknown
   linkType: soft
 
@@ -25432,6 +25433,7 @@ __metadata:
     "@redwoodjs/forms": 2.0.0
     "@redwoodjs/router": 2.0.0
     "@redwoodjs/web": 2.0.0
+    jlinx-util: "github:jlinclabs/jlinx-util#279f90fdb3b9237522b7d57d22f9c34ae644bcea"
     magic-sdk: ^8.1.1
     prop-types: 15.8.1
     react: 17.0.2

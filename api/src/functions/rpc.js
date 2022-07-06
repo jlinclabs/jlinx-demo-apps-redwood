@@ -21,22 +21,26 @@ export const handler = async (event, context) => {
   const authHandler = await createDbAuthHander(event, context)
   const currentUser = await authHandler._getCurrentUser()
   context.currentUser = currentUser
-  // globalContext.currentUser = currentUser
-  // // setContext({ ...context, currentUser, poop: 95 })
-  // globalContext.love = { me: 19 }
+
   const {
     serviceName, options
   } = JSON.parse(event.body)
   console.log('RPC CALL', { currentUser, serviceName, options, context })
+  logger.info('RPC CALL', { currentUser, serviceName, options, context })
 
   const [service, funcName] = serviceName.split('.')
-  const result = await services[service][funcName](options, context)
-  return {
-    statusCode: 200,
-    body: JSON.stringify(result)
-  }
-  return {
-    status: 200,
-    body: '',
+  try{
+    const result = await services[service][funcName](options, {context})
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result)
+    }
+  }catch(error){
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: `${error}`,
+      })
+    }
   }
 }

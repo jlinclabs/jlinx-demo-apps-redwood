@@ -9,13 +9,21 @@ export const identifiers = () => {
   return db.identifier.findMany()
 }
 
-export const identifier = ({ did }) => {
-  return db.identifier.findUnique({
+export const identifier = async ({ did }) => {
+  const identifier = await db.identifier.findUnique({
     where: { did },
   })
+  // console.log({ identifier })
+  // if (identifier){
+  //   identifier.signingKey = `${did}`.replace(/^did:key:/, '')
+  //   identifier.didDocument = signingKeyToDidDocument(identifier.signingKey)
+  // }
+  // console.log({ identifier })
+  return identifier
 }
 
-export const createIdentifier = () => {
+export const createIdentifier = (options, { context }) => {
+  console.log('createIdentifier ???', context)
   const { publicKey, secretKey } = createSigningKeyPair()
   const didDocument = signingKeyToDidDocument(publicKey)
   const did = didDocument.id

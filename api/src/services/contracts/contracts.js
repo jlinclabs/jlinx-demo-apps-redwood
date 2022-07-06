@@ -12,7 +12,7 @@ export const contract = ({ id }) => {
   })
 }
 
-export const createContract = async (options, context) => {
+export const createContract = async (options, { context }) => {
   console.log('CREATE CONTRACT', { options, context })
   console.log({ jlinx })
   const contract = await jlinx.createContract({

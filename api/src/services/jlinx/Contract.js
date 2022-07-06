@@ -33,9 +33,10 @@ export class Contract {
 
   waitForUpdate(){ return this.ledger.waitForUpdate() }
 
-  async init () {
+  async init ({ contractUrl }) {
     await this.ledger.init({
       docType: this.docType,
+      contractUrl,
     })
   }
 
@@ -163,6 +164,7 @@ export class Contract {
 export async function createContract({ contractUrl }){
   const contract = await this.create({
     docType: 'Contract',
+    contractUrl,
   })
   return contract
 }
