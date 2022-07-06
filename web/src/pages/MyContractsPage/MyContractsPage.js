@@ -20,7 +20,7 @@ const MyContractsPage = () => {
           <Button
             variant="contained"
             component={Link}
-            to={Link.to.myNewContract()}
+            to={Link.to.mySignContract()}
             sx={{ml: 1}}
           >{`Sign Offered Contract`}</Button>
         </Box>

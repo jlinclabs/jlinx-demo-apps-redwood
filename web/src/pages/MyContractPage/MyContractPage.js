@@ -41,6 +41,16 @@ const Contract = ({ id }) => {
     <Typography variant="h4">Contract</Typography>
     <Typography variant="body2">ID: {id}</Typography>
     <Typography variant="body2">Created: <Timestamp at={contract.createdAt}/></Typography>
+    <Typography variant="body2">
+      Identifier: <Link to={Link.to.myIdentifier({did: contract.identifierDid})}>
+        {contract.identifierDid}
+      </Link>
+    </Typography>
+    <Typography variant="body2">
+      Contract URL: <Link href={contract.contractUrl}>
+        {contract.contractUrl}
+      </Link>
+    </Typography>
     <Typography variant="body2" sx={{overflow: 'auto'}} component="pre">
       <code>{JSON.stringify(contract, null, 2)}</code>
     </Typography>

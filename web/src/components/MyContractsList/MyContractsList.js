@@ -39,7 +39,7 @@ const MyContractsList = () => {
         ? Array(3).fill().map((_, i) =>
           <Skeleton key={i} animation="wave" height="100px" />
         )
-        : contracts.map(contract =>
+        : [...contracts].sort(sorter).map(contract =>
           <MyContract key={contract.id} contract={contract}/>
         )
       }
@@ -49,6 +49,11 @@ const MyContractsList = () => {
 
 export default MyContractsList
 
+const sorter = (a, b) => {
+  a = a.createdAt
+  b = b.createdAt
+  return a < b ? 1 : a > b ? -1 : 0
+}
 
 function MyContract({ contract }){
   return <ListItem {...{

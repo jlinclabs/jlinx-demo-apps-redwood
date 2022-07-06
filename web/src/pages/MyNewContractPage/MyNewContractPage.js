@@ -1,7 +1,6 @@
 import { MetaTags } from '@redwoodjs/web'
 import { useState } from 'react'
 import { navigate, routes } from '@redwoodjs/router'
-// import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import * as forms from '@redwoodjs/forms'
 
@@ -31,17 +30,9 @@ const MyNewContractPage = () => {
 
 export default MyNewContractPage
 
-console.log({ forms })
-
 const NewContractForm = () => {
   const [ contractUrl, setContractUrl ] = useState('https://contracts.io/sisa-suyF9tPmVrtuuLn3R4XdzGXMZN6aFfCIXuXwGpAHtCw.md')
   const [ identifierDid, setIdentifierDid ] = useState('')
-
-  console.log({
-    identifierDid,
-    contractUrl,
-  })
-
   const identifiersQuery = useServiceQuery('identifiers.identifiers')
   const identifiers = identifiersQuery.data || []
   const [createContract, { loading }] = useService(
@@ -64,10 +55,6 @@ const NewContractForm = () => {
     <Box {...{
       component: forms.Form,
       onSubmit(){
-        console.log({
-          identifierDid,
-          contractUrl,
-        })
         createContract({
           identifierDid,
           contractUrl,
@@ -80,13 +67,14 @@ const NewContractForm = () => {
       <Typography component="h1" variant="h5">
         Create Contract
       </Typography>
+      <Typography variant="body1" sx={{my: 2}}>
+        Which identifier do you want to offer this contract as?
+      </Typography>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Identifier</InputLabel>
+        <InputLabel id="identifierDidLabel">Identifier</InputLabel>
         <Select
           name="identifierDid"
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Identifier"
+          labelId="identifierDidLabel"
           disabled={disabled}
           autoFocus
           value={identifierDid}
@@ -100,12 +88,16 @@ const NewContractForm = () => {
           )}
         </Select>
       </FormControl>
+      <Typography variant="body1" sx={{my: 2}}>
+        Which contract do you want to offer?
+      </Typography>
+
       <TextField
+        label="Contract URL"
         disabled={disabled}
         margin="normal"
         required
         fullWidth
-        label="Contract Url"
         name="contractUrl"
         placeholder="https://contracts.io/sisa-suyF9tPmVrtuuLn3R4XdzGXMZN6aFfCIXuXwGpAHtCw.md"
         value={contractUrl}
