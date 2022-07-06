@@ -23,6 +23,7 @@ const Routes = () => {
         <Route path="/my/identifiers/{did}" page={MyIdentifierPage} name="myIdentifier" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
         <Route path="/my/contracts/new" page={MyNewContractPage} name="myNewContract" />
+        <Route path="/my/contracts/sign" page={MySignContractPage} name="mySignContract" />
         <Route path="/my/contracts/{id}" page={MyContractPage} name="myContract" />
       </Set>
       <Route notfound page={NotFoundPage} />
