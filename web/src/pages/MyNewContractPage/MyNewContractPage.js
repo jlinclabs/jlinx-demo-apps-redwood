@@ -9,8 +9,12 @@ import Container from '@mui/material/Container'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
 
-import { useService } from 'src/lib/rpc'
+import { useService, useServiceQuery } from 'src/lib/rpc'
 
 const MyNewContractPage = () => {
   return (
@@ -35,6 +39,8 @@ const CREATE_CONTRACT_MUTATION = gql`
 `
 
 const NewContractForm = () => {
+  const identifiersQuery = useServiceQuery('identifiers.identifiers')
+  const identifiers = identifiersQuery.data || []
   const [createContract, { loading, error }] = useService(
     'contracts.createContract',
     {
@@ -65,6 +71,19 @@ const NewContractForm = () => {
       <Typography component="h1" variant="h5">
         Create Contract
       </Typography>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Identifier</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Identifier"
+          disabled={identifiers.length === 0}
+        >
+          {identifiers.map(identifier =>
+            <MenuItem value={identifier.did}>{identifier.did}</MenuItem>
+          )}
+        </Select>
+      </FormControl>
       <TextField
         disabled={loading}
         InputProps={{

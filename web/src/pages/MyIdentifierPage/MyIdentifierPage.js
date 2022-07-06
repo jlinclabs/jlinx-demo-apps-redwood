@@ -1,4 +1,4 @@
-import { MetaTags, useQuery } from '@redwoodjs/web'
+import { MetaTags } from '@redwoodjs/web'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
@@ -11,10 +11,9 @@ import InspectObject from 'src/components/InspectObject'
 import { useServiceQuery } from 'src/lib/rpc'
 
 const MyIdentifierPage = ({ did }) => {
-
   return (
     <>
-      <MetaTags title="MyIdentifier" description="MyIdentifier page" />
+      <MetaTags title="My Identifier" description="My Identifier" />
       <Container maxWidth="md" sx={{p: 2}}>
         <Identifier {...{ did }}/>
       </Container>
@@ -22,30 +21,14 @@ const MyIdentifierPage = ({ did }) => {
   )
 }
 
-export const QUERY = gql`
-  query MyIdentifierByDid($did: String!) {
-    identifier: identifier(did: $did) {
-      did
-      createdAt
-    }
-  }
-`
-
 export default MyIdentifierPage
 
-
 const Identifier = ({ did }) => {
-  // const { loading, error, data } = useQuery(QUERY, {
-    //   variables: { did }
-    // })
-
   const { loading, error, data } = useServiceQuery(
     `identifiers.identifier`, { did }
   )
-  console.log({ loading, error, data })
   const identifier = data
   if (!identifier) return <CircularProgress/>
-  if (!identifier) return <span>Spinner…</span>
   if (error) return <Alert severity="error">{error.message}</Alert>
   return <Paper
     sx={{
