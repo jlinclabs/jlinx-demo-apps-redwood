@@ -1,4 +1,5 @@
 import { db } from 'src/lib/db'
+import { context } from '@redwoodjs/graphql-server'
 
 export const contracts = () => {
   return db.contract.findMany()
@@ -10,10 +11,14 @@ export const contract = ({ id }) => {
   })
 }
 
-export const createContract = async ({ input }) => {
-  console.log('CREATE CONTRACT', { input })
+export const createContract = async ({ contractUrl }) => {
+  console.log('CREATE CONTRACT', { contractUrl })
+  const data = {
+    contractUrl,
+    userId: context.currentUser.id,
+  }
   return await db.contract.create({
-    data: input,
+    data,
   })
 }
 

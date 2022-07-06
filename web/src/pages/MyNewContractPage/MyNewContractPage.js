@@ -1,6 +1,6 @@
 import { MetaTags } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import { useMutation } from '@redwoodjs/web'
+// import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import * as forms from '@redwoodjs/forms'
 
@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-
+import { useService } from 'src/lib/rpc'
 
 const MyNewContractPage = () => {
   return (
@@ -35,11 +35,11 @@ const CREATE_CONTRACT_MUTATION = gql`
 `
 
 const NewContractForm = () => {
-  const [createContract, { loading, error }] = useMutation(
-    CREATE_CONTRACT_MUTATION,
+  const [createContract, { loading, error }] = useService(
+    'contracts.createContract',
     {
-      onCompleted: ({ createContract }) => {
-        const { id } = createContract
+      onCompleted: ({ contract }) => {
+        const { id } = contract
         toast.success(`Contract created DID=${id}`)
         navigate(routes.myContract({ id }))
       },
@@ -52,11 +52,7 @@ const NewContractForm = () => {
 
   const onSubmit = (data) => {
     createContract({
-      variables: {
-        input: {
-          contractUrl: data.contractUrl || 'https://fake.contract.example.com/fake'
-        }
-      }
+      contractUrl: data.contractUrl || 'https://fake.contract.example.com/fake'
     })
   }
   return (

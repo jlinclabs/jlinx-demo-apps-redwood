@@ -9,14 +9,15 @@ generator client {
 }
 
 model User {
-  id          Int          @id @default(autoincrement())
-  createdAt   DateTime     @default(now())
-  did         String       @unique
-  name        String?
-  emails      Email[]
-  identifiers Identifier[]
-  profiles    Profile[]
-  contracts   Contract[]
+  id               Int                @id @default(autoincrement())
+  createdAt        DateTime           @default(now())
+  did              String             @unique
+  name             String?
+  emails           Email[]
+  identifiers      Identifier[]
+  profiles         Profile[]
+  contracts        Contract[]
+  ContractInstance ContractInstance[]
 }
 
 model Email {
@@ -44,6 +45,14 @@ model Profile {
 }
 
 model Contract {
+  id        String   @id
+  createdAt DateTime @default(now())
+  value     String
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+}
+
+model ContractInstance {
   id        String   @id
   createdAt DateTime @default(now())
   value     String
