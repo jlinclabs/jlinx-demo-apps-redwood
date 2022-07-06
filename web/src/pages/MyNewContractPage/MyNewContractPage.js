@@ -10,13 +10,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-const CREATE_CONTRACT_MUTATION = gql`
-  mutation CreateContractMutation($input: CreateContractInput!) {
-    createContract(input: $input) {
-      id
-    }
-  }
-`
+
 
 const MyNewContractPage = () => {
   return (
@@ -32,6 +26,13 @@ const MyNewContractPage = () => {
 
 export default MyNewContractPage
 
+const CREATE_CONTRACT_MUTATION = gql`
+  mutation CreateContractMutation($input: CreateContractInput!) {
+    createContract(input: $input) {
+      id
+    }
+  }
+`
 
 const NewContractForm = () => {
   const [createContract, { loading, error }] = useMutation(
@@ -50,11 +51,10 @@ const NewContractForm = () => {
   )
 
   const onSubmit = (data) => {
-    debugger
     createContract({
       variables: {
         input: {
-          contractUrl: 'https://fake.contract.example.com/fake'
+          contractUrl: data.contractUrl || 'https://fake.contract.example.com/fake'
         }
       }
     })

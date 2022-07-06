@@ -17,7 +17,8 @@ export const schema = gql`
   }
 
   type Mutation {
-    createContract(input: CreateContractInput!): Contract! @requireAuth
+    # createContract(input: CreateContractInput!): Contract! @requireAuth
+    createContract: Contract! @requireAuth
     deleteContract(id: String!): Contract! @requireAuth
   }
 `
