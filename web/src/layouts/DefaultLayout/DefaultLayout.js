@@ -95,7 +95,7 @@ function LoggedOut(props){
 function LoggedIn({ auth }){
   const { currentUser } = auth
   return <MenuItem component={Link} to={routes.my()}>
-    {`${currentUser.name || 'ANON'}`}
+    {`${currentUser.email}`}
   </MenuItem>
   // const handleMenu = () => {}
   // const handleClose = () => {}
