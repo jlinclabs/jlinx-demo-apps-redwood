@@ -35,12 +35,13 @@ const Identifier = ({ did }) => {
       // m: 4,
       p: 2,
     }}
+    component="div"
   >
     <Typography variant="h4">Identifier</Typography>
     <Typography variant="h5">{did}</Typography>
     <Typography variant="body2">Created at: <Timestamp at={identifier.createdAt}/></Typography>
-    <Typography variant="body2" sx={{overflow: 'auto'}}>
-      <pre><code>{JSON.stringify(identifier.didDocument, null, 2)}</code></pre>
+    <Typography variant="body2" sx={{overflow: 'auto'}} component="pre">
+      <code>{JSON.stringify(identifier.didDocument, null, 2)}</code>
     </Typography>
   </Paper>
 }

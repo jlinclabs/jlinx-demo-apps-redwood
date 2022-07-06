@@ -51,5 +51,9 @@ async function rpcCall(body){
       },
     }
   )
-  return await response.json()
+  const data = await response.json()
+  if (data.errors && data.errors[0] && data.errors[0].message){
+    throw new Error(`${data.errors[0].message}`)
+  }
+  return data
 }

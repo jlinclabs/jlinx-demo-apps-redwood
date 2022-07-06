@@ -6,16 +6,29 @@ export const contracts = () => {
   return db.contract.findMany()
 }
 
-export const contract = ({ id }) => {
-  return db.contract.findUnique({
+export const contract = async ({ id }) => {
+  const contract = await db.contract.findUnique({
     where: { id },
   })
+  if (!contract) return
+  const contractLedger = await jlinx.get(contract.id)
+  await contractLedger.update()
+  Object.assign(contract, {
+    state: contractLedger.state,
+    host: contractLedger.host,
+    identifierDid: contractLedger.identifierDid,
+    contractUrl: contractLedger.contractUrl,
+  })
+  console.log('GET CONTRACT', id, contract)
+  return contract
 }
 
 export const createContract = async (options, { context }) => {
   console.log('CREATE CONTRACT', { options, context })
   console.log({ jlinx })
+  // TODO ensure identifierDid exists and is ours
   const contract = await jlinx.createContract({
+    identifierDid: options.identifierDid,
     contractUrl: options.contractUrl,
   })
   console.log({ contract })

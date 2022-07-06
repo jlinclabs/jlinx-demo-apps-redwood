@@ -33,10 +33,10 @@ export class Contract {
 
   waitForUpdate(){ return this.ledger.waitForUpdate() }
 
-  async init ({ contractUrl }) {
+  async init (header) {
     await this.ledger.init({
       docType: this.docType,
-      contractUrl,
+      ...header
     })
   }
 
@@ -65,6 +65,8 @@ export class Contract {
     entries.forEach((entry, index) => {
       if (index === 0){
         value._header = entry
+        value.identifierDid = entry.identifierDid
+        value.contractUrl = entry.contractUrl
 
       // }else if (entry.event === 'AccountAccepted'){
       //   value.state = 'open'
@@ -93,6 +95,8 @@ export class Contract {
   // STATE
   get state () { return this._value?.state }
   get host () { return this._value?.host }
+  get identifierDid () { return this._value?.identifierDid }
+  get contractUrl () { return this._value?.contractUrl }
   // get appUserId () { return this._value?.appUserId }
   // get signupSecret () { return this._value?.signupSecret }
 
@@ -161,10 +165,10 @@ export class Contract {
 }
 
 // intented to live on jlinx object
-export async function createContract({ contractUrl }){
+export async function createContract(header){
   const contract = await this.create({
     docType: 'Contract',
-    contractUrl,
+    ...header
   })
   return contract
 }

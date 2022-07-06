@@ -41,8 +41,8 @@ const Contract = ({ id }) => {
     <Typography variant="h4">Contract</Typography>
     <Typography variant="body2">ID: {id}</Typography>
     <Typography variant="body2">Created: <Timestamp at={contract.createdAt}/></Typography>
-    <Typography variant="body2" sx={{overflow: 'auto'}}>
-      <pre><code>{JSON.stringify(contract.didDocument, null, 2)}</code></pre>
+    <Typography variant="body2" sx={{overflow: 'auto'}} component="pre">
+      <code>{JSON.stringify(contract, null, 2)}</code>
     </Typography>
 
     <MUILink href={`${process.env.JLINX_HOST}/${id}`} target="_blank">VIEW ON IPLS</MUILink>
