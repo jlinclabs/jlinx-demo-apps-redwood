@@ -1,9 +1,10 @@
 export const schema = gql`
   type User {
     id: Int!
+    createdAt: DateTime!
+    email: String!
+    did: String!
     name: String
-    did: String
-    emails: [Email]!
   }
 
   type Query {

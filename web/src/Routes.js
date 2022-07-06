@@ -7,6 +7,9 @@ import MyLayout from 'src/layouts/MyLayout'
 const Routes = () => {
   return (
     <Router {...{ useAuth }}>
+      <Route path="/signup" page={SignupPage} name="signup" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Route path="/my-contract" page={MyContractPage} name="myContract" />
       <Set wrap={DefaultLayout}>
         <Route path="/" page={HomePage} name="home" />
