@@ -1,15 +1,6 @@
 import { navigate, routes } from '@redwoodjs/router'
 import { useEffect, useRef } from 'react'
-// import {
-//   Form,
-//   Label,
-//   TextField,
-//   PasswordField,
-//   Submit,
-//   FieldError,
-// } from '@redwoodjs/forms'
 import * as forms from '@redwoodjs/forms'
-console.log({ forms})
 import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'

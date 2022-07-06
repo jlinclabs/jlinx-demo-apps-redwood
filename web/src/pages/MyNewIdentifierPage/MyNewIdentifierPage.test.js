@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import NewcontractPage from './NewcontractPage'
+import MyNewIdentifierPage from './MyNewIdentifierPage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('NewcontractPage', () => {
+describe('MyNewIdentifierPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NewcontractPage />)
+      render(<MyNewIdentifierPage />)
     }).not.toThrow()
   })
 })

@@ -11,7 +11,7 @@ const IdentifiersLayout = ({ children }) => {
             Identifiers
           </Link>
         </h1>
-        <Link to={routes.newIdentifier()} className="rw-button rw-button-green">
+        <Link to={routes.myNewIdentifier()} className="rw-button rw-button-green">
           <div className="rw-button-icon">+</div> New Identifier
         </Link>
       </header>

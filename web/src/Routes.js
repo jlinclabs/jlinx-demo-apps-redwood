@@ -16,10 +16,10 @@ const Routes = () => {
       <Set wrap={[DefaultLayout, MyLayout]} unauthenticated="home">
         <Route path="/my" page={MyPage} name="my" />
         <Route path="/my/identifiers" page={MyIdentifiersPage} name="myIdentifiers" />
-        <Route path="/my/identifiers/new" page={NewIdentifierPage} name="newIdentifier" />
+        <Route path="/my/identifiers/new" page={MyNewIdentifierPage} name="myNewIdentifier" />
         <Route path="/my/identifiers/{did}" page={MyIdentifierPage} name="myIdentifier" />
         <Route path="/my/contracts" page={MyContractsPage} name="myContracts" />
-        <Route path="/my/contracts/new" page={NewContractPage} name="newContract" />
+        <Route path="/my/contracts/new" page={MyNewContractPage} name="myNewContract" />
         <Route path="/my/contracts/{id}" page={MyContractPage} name="myContract" />
       </Set>
       <Route notfound page={NotFoundPage} />
