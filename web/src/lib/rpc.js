@@ -30,7 +30,11 @@ async function rpcCall(body){
     '/.redwood/functions/rpc',
     {
       method: 'post',
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      headers: {
+        'auth-provider': 'dbAuth',
+        'Content-Type': 'application/json',
+      },
     }
   )
   return await response.json()

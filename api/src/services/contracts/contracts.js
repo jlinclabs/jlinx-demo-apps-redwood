@@ -1,5 +1,6 @@
 import { db } from 'src/lib/db'
-import { context } from '@redwoodjs/graphql-server'
+// import { context } from '@redwoodjs/graphql-server'
+import jlinx from 'src/services/jlinx'
 
 export const contracts = () => {
   return db.contract.findMany()
@@ -11,10 +12,15 @@ export const contract = ({ id }) => {
   })
 }
 
-export const createContract = async ({ contractUrl }) => {
-  console.log('CREATE CONTRACT', { contractUrl })
+export const createContract = async (options, context) => {
+  console.log('CREATE CONTRACT', { options, context })
+  console.log({ jlinx })
+  const contract = await jlinx.createContract({
+    contractUrl: options.contractUrl,
+  })
+  console.log({ contract })
   const data = {
-    contractUrl,
+    id: contract.id,
     userId: context.currentUser.id,
   }
   return await db.contract.create({

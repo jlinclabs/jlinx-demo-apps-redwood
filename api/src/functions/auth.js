@@ -2,6 +2,11 @@ import { db } from 'src/lib/db'
 import { DbAuthHandler } from '@redwoodjs/api'
 
 export const handler = async (event, context) => {
+  const authHandler = await createDbAuthHander(event, context)
+  return await authHandler.invoke()
+}
+
+export const createDbAuthHander = async (event, context) => {
   const forgotPasswordOptions = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -115,7 +120,7 @@ export const handler = async (event, context) => {
     errors: {
       // `field` will be either "username" or "password"
       fieldMissing: '${field} is required',
-      usernameTaken: 'Username `${username}` already in use',
+      usernameTaken: 'Email `${username}` already has an account',
     },
   }
 
@@ -158,5 +163,5 @@ export const handler = async (event, context) => {
     signup: signupOptions,
   })
 
-  return await authHandler.invoke()
+  return authHandler
 }

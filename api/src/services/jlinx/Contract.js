@@ -65,17 +65,17 @@ export class Contract {
       if (index === 0){
         value._header = entry
 
-      }else if (entry.event === 'AccountAccepted'){
-        value.state = 'open'
-        value.host = entry.host
-        value.appUserId = entry.appUserId
-        value.signupSecret = entry.signupSecret
+      // }else if (entry.event === 'AccountAccepted'){
+      //   value.state = 'open'
+      //   value.host = entry.host
+      //   value.appUserId = entry.appUserId
+      //   value.signupSecret = entry.signupSecret
 
-      // }else if (entry.event === 'AccountClosed'){
-        //   value.state = 'closed'
+      // // }else if (entry.event === 'AccountClosed'){
+      //   //   value.state = 'closed'
 
-      }else if (entry.event === 'SessionRequestResolved'){
-        value.sessionRequestResolutions[entry.sessionRequestId] = entry
+      // }else if (entry.event === 'SessionRequestResolved'){
+      //   value.sessionRequestResolutions[entry.sessionRequestId] = entry
 
       }else {
         value._ignoredEntries = value._ignoredEntries || []
@@ -159,7 +159,10 @@ export class Contract {
 
 }
 
-
-export function createContract(){
-
+// intented to live on jlinx object
+export async function createContract({ contractUrl }){
+  const contract = await this.create({
+    docType: 'Contract',
+  })
+  return contract
 }

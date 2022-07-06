@@ -3,7 +3,10 @@ import {
   DbAuthHandler,
   getAuthenticationContext
 } from '@redwoodjs/api'
-import { getCurrentUser } from 'src/lib/auth'
+import { useRequireAuth, context as globalContext, setContext } from '@redwoodjs/graphql-server'
+import { getCurrentUser, isAuthenticated } from 'src/lib/auth'
+import { logger } from 'src/lib/logger'
+import { createDbAuthHander } from 'src/functions/auth'
 import services from 'src/services/**/*.{js,ts}'
 
 for (const name in services){
@@ -12,25 +15,28 @@ for (const name in services){
     services[left] = services[name]
   delete services[name]
 }
-console.log({ services })
+
+
 export const handler = async (event, context) => {
-  // SKIP AUTH FOR NOW! JUST FAKE IT FAST
+  const authHandler = await createDbAuthHander(event, context)
+  const currentUser = await authHandler._getCurrentUser()
+  context.currentUser = currentUser
+  // globalContext.currentUser = currentUser
+  // // setContext({ ...context, currentUser, poop: 95 })
+  // globalContext.love = { me: 19 }
+  const {
+    serviceName, options
+  } = JSON.parse(event.body)
+  console.log('RPC CALL', { currentUser, serviceName, options, context })
 
-  console.log({ event }, event.requestContext, { context })
-  console.log('getAuthenticationContext' + getAuthenticationContext)
-  const x = await getAuthenticationContext({ event, context })
-  console.log("??", x)
-  // const currentUser = await getCurrentUser(null, { })
-  // const {
-  //   serviceName, options
-  // } = JSON.parse(event.body)
-  // console.log('RPC CALL', { serviceName, options, context })
-
-  // const [service, funcName] = serviceName.split('.')
-  // const result = await services[service][funcName](options)
-  const result = { ok: 42 }
+  const [service, funcName] = serviceName.split('.')
+  const result = await services[service][funcName](options, context)
   return {
     statusCode: 200,
     body: JSON.stringify(result)
+  }
+  return {
+    status: 200,
+    body: '',
   }
 }
