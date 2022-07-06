@@ -33,9 +33,10 @@ const NewContractButton = ({
 
   props.onClick = () => {
     createContract({
-      contractUrl: 'https://wtfpanda.com',
-      input: {
-        contractUrl: 'https://fake.contract.example.com/fake'
+      variables: {
+        input: {
+          contractUrl: 'https://fake.contract.example.com/fake'
+        }
       }
     })
   }

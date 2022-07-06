@@ -1,6 +1,7 @@
 export const schema = gql`
   type Contract {
     id: String!
+    createdAt: DateTime!
     user: User!
     userId: Int!
     value: String!

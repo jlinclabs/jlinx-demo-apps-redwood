@@ -14,26 +14,31 @@ export const contract = ({ id }) => {
 
 export const createContract = async ({ input }) => {
   console.log('CREATE CONTRACT', { input })
-  const contract = await jlinx.createContract()
-  console.log({ contract })
-  const data = {
-    id: contract.id,
-    userId: context.currentUser.id,
-    value: contract.value,
-  }
-  const record = await db.contract.create({
-    data,
+  return await db.contract.create({
+    data: input,
   })
-  console.log({ record })
-  return record
+  // return { FAKE_CONTRACT: 12 }
+  // const contract = await jlinx.createContract()
+  // console.log({ contract })
+  // const data = {
+  //   id: contract.id,
+  //   userId: context.currentUser.id,
+  //   value: contract.value,
+  // }
+  // const record = await db.contract.create({
+  //   data,
+  // })
+  // console.log({ record })
+  // return record
+
 }
 
-export const updateContract = ({ id, input }) => {
-  return db.contract.update({
-    data: input,
-    where: { id },
-  })
-}
+// export const updateContract = ({ id, input }) => {
+//   return db.contract.update({
+//     data: input,
+//     where: { id },
+//   })
+// }
 
 export const deleteContract = ({ id }) => {
   return db.contract.delete({
