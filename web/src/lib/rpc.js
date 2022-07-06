@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function useService(serviceName, handlers = {}){
   const [loading, setLoading] = useState()
@@ -23,6 +23,20 @@ export function useService(serviceName, handlers = {}){
   }
   return [call, { loading, error }]
 }
+
+export function useServiceQuery(serviceName, options = {}){
+  const [data, setData] = useState()
+
+  const [call, { loading, error }] = useService(serviceName, {
+    onCompleted(data){ setData(data) }
+  })
+  useEffect(
+    () => { call(options) },
+    [serviceName]
+  )
+  return { loading, error, data }
+}
+
 
 
 async function rpcCall(body){

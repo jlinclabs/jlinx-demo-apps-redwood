@@ -13,12 +13,12 @@ export const identifier = async ({ did }) => {
   const identifier = await db.identifier.findUnique({
     where: { did },
   })
-  // console.log({ identifier })
-  // if (identifier){
-  //   identifier.signingKey = `${did}`.replace(/^did:key:/, '')
-  //   identifier.didDocument = signingKeyToDidDocument(identifier.signingKey)
-  // }
-  // console.log({ identifier })
+  console.log({ identifier })
+  if (identifier){
+    identifier.signingKey = `${did}`.replace(/^did:key:/, '')
+    identifier.didDocument = signingKeyToDidDocument(identifier.signingKey)
+  }
+  console.log({ identifier })
   return identifier
 }
 
