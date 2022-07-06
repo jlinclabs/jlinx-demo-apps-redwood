@@ -1,3 +1,5 @@
+import { AuthProvider } from '@redwoodjs/auth'
+
 import { useAuth, AuthProvider } from '@redwoodjs/auth'
 import { Magic } from 'magic-sdk'
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web'
@@ -17,13 +19,15 @@ const m = new Magic(process.env.MAGICLINK_PUBLIC)
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-      <AuthProvider client={m} type="magicLink">
-        <RedwoodApolloProvider {...{ useAuth }}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
-          </ThemeProvider>
-        </RedwoodApolloProvider>
+      <AuthProvider type="dbAuth">
+        <AuthProvider client={m} type="magicLink">
+          <RedwoodApolloProvider {...{ useAuth }}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Routes />
+            </ThemeProvider>
+          </RedwoodApolloProvider>
+        </AuthProvider>
       </AuthProvider>
     </RedwoodProvider>
   </FatalErrorBoundary>

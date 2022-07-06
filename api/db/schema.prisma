@@ -9,15 +9,19 @@ generator client {
 }
 
 model User {
-  id               Int                @id @default(autoincrement())
-  createdAt        DateTime           @default(now())
-  did              String             @unique
-  name             String?
-  emails           Email[]
-  identifiers      Identifier[]
-  profiles         Profile[]
-  contracts        Contract[]
-  ContractInstance ContractInstance[]
+  id                  Int                @id @default(autoincrement())
+  createdAt           DateTime           @default(now())
+  did                 String             @unique
+  name                String?
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+  emails              Email[]
+  identifiers         Identifier[]
+  profiles            Profile[]
+  contracts           Contract[]
+  ContractInstance    ContractInstance[]
 }
 
 model Email {
